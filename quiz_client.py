@@ -6,9 +6,9 @@ port = 8000
 sock = socket.socket()
 sock.connect((host, port))
 
-num_ques = 10
+num_ques = 3
 
-for _ in range(num_ques):
+for i in range(num_ques):
     recv_ques = sock.recv(1024).decode()
     print(recv_ques)
     my_ans = input('> ')
