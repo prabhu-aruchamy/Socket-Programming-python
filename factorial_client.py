@@ -3,8 +3,9 @@ import socket
 HOST = 'localhost'
 PORT = 2500
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
+s = socket.socket()
+s.connect((HOST, PORT))
+while True:
     number = input("Enter a number that you want to find factorial: ")
     number = bytes(number, 'UTF-8')
     s.sendall(number)
