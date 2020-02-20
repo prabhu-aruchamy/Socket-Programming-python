@@ -10,4 +10,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         fmsg = bytes(msg, 'UTF-8')
         s.sendall(fmsg)
         data = s.recv(1024)
-        print('[CLIENT] Received back from server', data.decode('UTF-8'))
+        print('[CLIENT] Received back from server: ', data.decode('UTF-8'))

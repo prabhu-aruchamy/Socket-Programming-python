@@ -28,19 +28,19 @@ def func(data):
 HOST = '127.0.0.1'
 PORT = 12345
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen()
-    print("Server Listening...")
-    while True:
-        conn, addr = s.accept()
-        with conn:
-            print('Connected by', addr)
-            msg = b"send input like 'operand' 'op' 'operand'"
-            conn.sendall(msg)
-            while True:
-                data = conn.recv(1024)
-                if not data:
-                    break
-                res = func(data)
-                conn.sendall(res)
+s = socket.socket()
+s.bind((HOST, PORT))
+s.listen()
+print("Server Listening...")
+while True:
+    conn, addr = s.accept()
+    with conn:
+        print('Connected by', addr)
+        msg = b"send input like 'operand' 'op' 'operand'"
+        conn.sendall(msg)
+        while True:
+            data = conn.recv(1024)
+            if not data:
+                break
+            res = func(data)
+            conn.sendall(res)

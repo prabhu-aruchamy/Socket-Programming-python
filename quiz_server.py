@@ -17,10 +17,10 @@ def client_handler(conn, addr):
 # main
 port = 8000
 host = socket.gethostname()
-sock = socket.socket()
-sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-sock.bind((host, port))
-sock.listen(10)
+s = socket.socket()
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+s.bind((host, port))
+s.listen(10)
 print('Server has started succesfully. Running on port {}'.format(port))
 connections = list()
 ques_ans_dict = {}
@@ -31,8 +31,8 @@ for i in range(3):
     ans = input()
     ques_ans_dict[ques] = ans
 while True:
-    conn, addr = sock.accept()
+    conn, addr = s.accept()
     connections.append(conn)
     print('Connected from address: {}'.format(str(addr)))
     start_new_thread(client_handler, (conn, addr))
-sock.close()
+s.close()
